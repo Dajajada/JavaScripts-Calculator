@@ -1,5 +1,5 @@
 
-let memory="";
+let memory=0;
 let actualnumber="";
 let operator="";
 let result=0;
@@ -7,23 +7,23 @@ let operaciones=[];
 
 
 function add(one,two){
-     return parseInt(one+two);
+     return parseFloat(one)+parseFloat(two);
    
 }
 function subtract(one,two){
-    return parseInt(one-two);
+    return parseFloat(one)-parseFloat(two);
 }
 function divide(one,two){
-    return parseInt(one/two);
+    return parseFloat(one)/parseFloat(two);
 }
 function multiply(one,two){
-    return parseInt(one*two);
+    return parseFloat(one)*parseFloat(two);
 }
 function percentage(one){
-    return parseInt(one*0.1);
+    return parseFloat(one)*0.1;
 }
 function elevete(one,two){
-    return parseInt(Math.pow(one,two));
+    return parseFloat(Math.pow(one,two));
 };
 function center(o){
     switch(o){
@@ -40,7 +40,7 @@ function center(o){
             memory= multiply(memory,actualnumber);
              break;
         case "%":
-            memory= percentage(actualnumber);
+            memory= percentage(memory);
             break;
         case "^":
             memory= elevete(memory,actualnumber);
@@ -49,19 +49,28 @@ function center(o){
 }
 function operate(e){
     
-    if(e==="="){ center(operator);
+    if(e==="="){ center(operator);}
         
-        
+    else if(operator===""){
+        operator=e;
+        memory=parseFloat(actualnumber);
+
     }else{
+        operator=e;
+        center(e);
+    }  
+   /* }else{
         if(operator==""){
             operator=e; 
-           memory=actualnumber;
+           memory=parseInt(actualnumber);
         }else{
             operator=e;
             center(e);
         }
         
-    }
+    }*/
+
+
     console.log(operator);
     actualnumber="";  
      
